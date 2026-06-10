@@ -261,13 +261,13 @@
   </div>
 
   <div class="phase-tabs">
-    <div class="phase-tab active" onclick="switchPhase('phase0')">🏁 Avant le tournoi</div>
-    <div class="phase-tab" id="tab-phase1" onclick="switchPhase('phase1')">🔀 Après Tour 1</div>
+    <div class="phase-tab" onclick="switchPhase('phase0')">🏁 Avant le tournoi</div>
+    <div class="phase-tab active" id="tab-phase1" onclick="switchPhase('phase1')">🔀 Après Tour 1</div>
     <div class="phase-tab" id="tab-phase2" onclick="switchPhase('phase2')">🏆 Après Tour 2</div>
   </div>
 
   <!-- PHASE 0 -->
-  <div class="phase-panel active" id="phase0">
+  <div class="phase-panel" id="phase0">
     <div class="section-title" style="color:var(--yellow)">🏆 Gagnants finaux <span class="section-pts">— 20 points par bonne réponse</span></div>
     <div class="section-divider"></div>
     <div class="winner-cards">
@@ -296,7 +296,7 @@
   </div>
 
   <!-- PHASE 1 -->
-  <div class="phase-panel" id="phase1">
+  <div class="phase-panel active" id="phase1">
     <div class="section-title" style="color:rgba(255,255,255,0.8);margin-top:0;">🔀 Paris sur les matchs — Tour 2 <span class="section-pts">— 1 point par bonne réponse</span></div>
     <div class="section-divider"></div>
     <div class="tableau-block"><div class="tableau-header th-blue">🔵 Tableau 1</div><div class="matches-grid" id="p1-t1-matches"></div></div>
@@ -1042,14 +1042,8 @@ async function initPage() {
   buildAllCards();
   renderCotesTooltips();
 
-  // Ouvrir automatiquement la première phase avec des matchs pariables
-  if (!hasAnyBettableMatch(0)) {
-    if (!hasAnyBettableMatch(1)) {
-      switchPhase('phase2');
-    } else {
-      switchPhase('phase1');
-    }
-  }
+  // Ouvrir directement l'onglet “Après Tour 1”
+  switchPhase('phase1');
 }
 
 initPage();
